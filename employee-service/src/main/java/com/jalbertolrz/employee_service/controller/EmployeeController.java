@@ -28,6 +28,15 @@ public class EmployeeController {
         return ResponseEntity.ok().body(employeeService.findEmployeeById(id));
     }
 
+    @GetMapping("/details")
+    public ResponseEntity<?> findEmployeeWithDetails(){
+        return ResponseEntity.ok().body(employeeService.findAllWithDepartment());
+    }
+    @GetMapping("/details/{id}")
+    public ResponseEntity<?> findEmployeeWithDetailsById(@PathVariable Long id){
+        return ResponseEntity.ok().body(employeeService.findEmployeeWithDepartment(id));
+    }
+
     @GetMapping("/department/{id}")
     public ResponseEntity<?> findDepartmentById(@PathVariable Long id){
         return ResponseEntity.ok().body(employeeService.findByDepartmentId(id));
@@ -39,6 +48,7 @@ public class EmployeeController {
         URI location = URI.create("/api/v1/employees/" + e.getId());
         return ResponseEntity.created(location).body(e);
     }
+
 
 
 

@@ -17,3 +17,7 @@ spring:
           uri: lb://department-service
           predicates:
             - Path=/api/v1/departments/**
+        - id: city-service
+          uri: lb://city-service
+          predicates:
+            - Path=/api/v1/cities/**

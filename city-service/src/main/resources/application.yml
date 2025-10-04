@@ -1,12 +1,12 @@
 spring:
   application:
-    name: department-service
+    name: city-service
 
   config:
     import: "optional:configserver:http://localhost:8088"
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/department_db
+    url: jdbc:postgresql://localhost:5432/city_db
     username: employee
     password: 123456abc
     driver-class-name: org.postgresql.Driver
@@ -17,4 +17,5 @@ spring:
     show-sql: true
 
 server:
-  port: 8052
+  port: 8093
+

@@ -1,27 +1,26 @@
-package com.jalbertolrz.department_service.model;
+package comjalbertolrz.city_service.model;
+
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
-
 @Data
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "departments")
-public class Department {
+@Builder
+@Table(name="cities")
+@Entity
+public class City {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private Long cityId;
-    @Transient
-    private City city;
-    @Transient
-    private List<Employee> employees;
+    private String country;
+    private Integer countryCode;
+    private Integer population;
+
 
 }
