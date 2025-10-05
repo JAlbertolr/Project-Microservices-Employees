@@ -1,14 +1,16 @@
 package com.jalbertolrz.employee_service.controller;
 
 
+import com.jalbertolrz.employee_service.model.Department;
 import com.jalbertolrz.employee_service.model.Employee;
-import com.jalbertolrz.employee_service.repository.EmployeeRepository;
+import com.jalbertolrz.employee_service.service.DepartmentService;
 import com.jalbertolrz.employee_service.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -16,6 +18,7 @@ import java.net.URI;
 public class EmployeeController {
 
     private final EmployeeService employeeService;
+    private final DepartmentService departmentService;
 
 
     @GetMapping
@@ -32,6 +35,7 @@ public class EmployeeController {
     public ResponseEntity<?> findEmployeeWithDetails(){
         return ResponseEntity.ok().body(employeeService.findAllWithDepartment());
     }
+
     @GetMapping("/details/{id}")
     public ResponseEntity<?> findEmployeeWithDetailsById(@PathVariable Long id){
         return ResponseEntity.ok().body(employeeService.findEmployeeWithDepartment(id));

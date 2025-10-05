@@ -4,7 +4,9 @@ import com.jalbertolrz.department_service.clients.CityClient;
 import com.jalbertolrz.department_service.clients.EmployeeClient;
 import com.jalbertolrz.department_service.model.City;
 import com.jalbertolrz.department_service.model.Department;
+import com.jalbertolrz.department_service.service.CityService;
 import com.jalbertolrz.department_service.service.DepartmentService;
+import com.jalbertolrz.department_service.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,18 +21,18 @@ import java.net.URI;
 public class DepartmentController {
 
     private final DepartmentService departmentService;
-    private final EmployeeClient employeeClient;
-    private final CityClient cityClient;
+    private final EmployeeService employeeService;
+    private final CityService cityService;
 
     @GetMapping("/details")
     public ResponseEntity<List<Department>> findAllWithDetails(){
         List<Department> departments = departmentService.findAll();
         departments.forEach(department -> {
             // Llenar empleados
-            department.setEmployees(employeeClient.findAllByDepartmentId(department.getId()));
+            department.setEmployees(employeeService.findAllByDepartmentById(department.getId()));
             // Llenar ciudad
             if(department.getCityId() != null) {
-                department.setCity(cityClient.getCity(department.getCityId()));
+                department.setCity(cityService.findCityById(department.getCityId()));
             }
         });
         return ResponseEntity.ok().body(departments);
@@ -49,8 +51,8 @@ public class DepartmentController {
     @GetMapping("/details/{id}")
     public ResponseEntity<?> findDepartmentWithDetailsById(@PathVariable Long id){
        Department department=departmentService.findByDepartmentId(id);
-        department.setEmployees(employeeClient.findAllByDepartmentId(department.getId()));
-        City city= cityClient.getCity(department.getId());
+        department.setEmployees(employeeService.findAllByDepartmentById(department.getId()));
+        City city= cityService.findCityById(department.getId());
         department.setCity(city);
 
         return ResponseEntity.ok().body(department);
