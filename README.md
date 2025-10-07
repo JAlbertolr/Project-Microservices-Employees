@@ -15,8 +15,6 @@ EmployeeHub es una aplicación basada en microservicios para la gestión de empl
 - **Backend:** Spring Boot 3, Spring WebFlux (API Gateway), Spring Security, JWT, Spring Data JPA, Hibernate.  
 - **Microservicios:** Arquitectura distribuida con Eureka Discovery Server.  
 - **Autenticación:** JWT con roles de usuario.  
-- **Docker & Docker Compose:** Para desplegar todos los servicios localmente.  
-- **Testing:** Postman / Insomnia para probar endpoints REST.  
 
 ## Endpoints principales
 
